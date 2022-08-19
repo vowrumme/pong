@@ -95,20 +95,20 @@ def main():
       comp_y_mid=comp_y+RACKET_H/2
  
       # ボールとコンピュータの上下の距離
-      ball-comp_y=ball_y-comp_y_mid
+      ball_comp_y=ball_y-comp_y_mid
   
       # ボールがコンピュータの真ん中より下にあって、距離がコンピュータの上下スピードの最大値以上離れていた場合
-      if ball-comp_y<-COMP_SPEED_Y_MAX
+      if ball_comp_y<-COMP_SPEED_Y_MAX:
          # コンピュータの上下スピードを上方向の最大値にする
          comp_speed_y=-COMP_SPEED_Y_MAX
       # ボールがコンピュータの真ん中より上にあって、距離がコンピュータの上下スピードの最大速度以上離れていた場合
-      elif ball-comp_y>COMP_SPEED_Y_MAX
+      elif ball_comp_y>COMP_SPEED_Y_MAX:
          # コンピュータの上下スピードを下方向の最速値にする
          comp_speed_y=COMP_SPEED_Y_MAX
       # ボールがコンピュータの真ん中より上下スピードの最大値、最小値以内にある場合
       else:
          # コンピュータの上下スピードをボールとコンピュータの上下距離にする
-         comp_speed_y=ball-comp_y
+         comp_speed_y=ball_comp_y
       # コンピュータの位置を移動
       comp_y += comp_speed_y
 
@@ -119,7 +119,7 @@ def main():
          # コンピュータの上下スピードを0にする
          comp_speed_y=0
       # コンピュータの位置（ラケットの下端)がコートの下をはみ出たら
-      elif comp_y+RACKET_H>COURT_H
+      elif comp_y+RACKET_H>COURT_H:
          # コンピュータの位置をコートの下端（ラケットの長さ分上)にする
          comp_y=COURT_H-RACKET_H
 
