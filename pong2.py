@@ -22,36 +22,36 @@ while True:
     pygame.draw.rect(screen,color["black"],(play2['x'],play2['y'],play2['width'],play2['height']))
     # Bounce off top and bottom
     if ball['y'] > court['height'] - 10:
-        ball['y'] = court['height'] -10
+        ball['y'] = court['height'] - 10
         ball['vy'] *= -1
-    elif ball['y'] < 10:
-        ball['y'] = 10
+    elif ball['y'] < 5:
+        ball['y'] = 5
         ball['vy'] *= -1
     #  If intersecting with Paddle #1
-    if  ball['x'] < play1['x'] + play1['width'] + 10 and ball['y'] > play1['y'] and ball['y']< play1['y']+ play1['height']:
-        ball['x'] = play1['x'] + play1['width'] + 10
+    if  ball['x'] - 5 < play1['x'] + play1['width'] and ball['x'] + 5 > play1['x'] and ball['y'] > play1['y'] and ball['y']< play1['y']+ play1['height']:
+        ball['x'] = play1['x'] + play1['width'] + 5
         ball['vx'] *= -1.1 ; # Invert and increase velocity by 10%
-        ball['vy'] = random.random()*16 - 4 # Random y velocity between -4 and 4
+        ball['vy'] = random.random() * 16 - 8 # Random y velocity between -8 and 8
     #  If intersecting with Paddle #2
-    if  ball['x'] > play2['x'] - 10 and ball['y'] > play2['y'] and ball['y'] < play2['y'] + play2['height']: 
+    elif ball['x'] - 5 < play2['x'] + play2['width'] and ball['x'] + 5 > play2['x'] and ball['y'] > play2['y'] and ball['y'] < play2['y'] + play2['height']: 
         ball['x'] = play2['x'] - 10
         ball['vx'] *= -1.1 ; # Invert and increase velocity by 10%
-        ball['vy'] = random.random()*16 - 4 # Random y velocity between -4 and 4
+        ball['vy'] = random.random() * 16 - 8 # Random y velocity between -8 and 8
     # Move Paddles
     pressed_key=pygame.key.get_pressed()
-    if pressed_key[K_w] and play1['y'] > 5:
-        play1['y'] -=10
+    if pressed_key[K_w] and play1['y'] > 0:
+        play1['y'] -= 10
     if pressed_key[K_s] and play1['y'] < court['height'] - play1['height']:
-        play1['y'] +=10
-    if pressed_key[K_UP] and play2['y'] > 5:
-        play2['y'] -=10
+        play1['y'] += 10
+    if pressed_key[K_UP] and play2['y'] > 0:
+        play2['y'] -= 10
     if pressed_key[K_DOWN] and play2['y'] < court['height'] - play2['height']:
-        play2['y'] +=10
+        play2['y'] += 10
     # Update Score
-    if ball['x'] -5 < 30:
-        score[1] +=1
+    if ball['x'] < 0:
+        score[1] += 1
         ball['x'],ball['y'],ball['vx'],ball['vy'] = 350, 100, 8, 5
-    if ball['x'] + 5> court['width'] - 50 + play2['width']:
+    if ball['x'] > court['width']:
         score[0] +=1
         ball['x'],ball['y'],ball['vx'],ball['vy'] = 350, 100, -8, 5
     # Move the ball
