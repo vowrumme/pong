@@ -45,7 +45,7 @@ def main():
    pygame.display.set_caption("ピンポン")                              # 画面タイトル
    pygame.mouse.set_visible(False)                                    # マウスポインタを表示しない
 
-   computer_level=COMPUTER_MAX
+   computer_level=COMPUTER_STRONG
    run=True                                                           # 実行中かどうかの変数を真（True)"実行中"にしておく
 
    while run:                                                         # 実行中の間ずっと繰り返す 
