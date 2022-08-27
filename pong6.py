@@ -9,46 +9,46 @@ def main():
    #
    # 定数
    #
-   COURT_W,COURT_H,COURT_BLANK=700, 500, 10                           # コートサイズ 幅,高さ,余白
-   RACKET_W,RACKET_H=10,50                                            # ラケットサイズ 幅,高さ
-   COLOR_WHITE=(255,255,255)                                          # 白のRGB値
-   COLOR_BLACK=(0,0,0)                                                # 黒のRGB値
-   COLOR_RED=(255,0,0)                                                # 赤のRGB値
-   COLOR_GREEN=(0,255,0)                                              # 緑のRGB値
-   COLOR_BLUE=(0,0,255)                                               # 青のRGB値
-   FONT_SIZE_GAMEOVER=128                                             # GAMEOVERのフォントサイズ
-   FONT_SIZE_WINMESSAGE=80                                            # 勝利メッセージのフォントサイズ
-   FONT_SIZE_SCORE=64                                                 # スコアのフォントサイズ
-   BALL_R=7                                                           # ボールの半径
-   WIN_SCORE=10                                                       # 勝ち点
-   BALL_SPEED_X_MIN,BALL_SPEED_X_MAX=8,15                             # ボールの左右スピードの最小値、最大値(横)
-   BALL_SPEED_Y_MIN,BALL_SPEED_Y_MAX=0,5                              # ボールの上下スピードの最小値、最大値(縦)
-   PLAYER_SPEED_Y_MAX,COMPUTER_SPEED_Y_MAX=4,5                        # プレーヤとコンピュータの上下スピードの最大値
-   COMPUTER_STRONG   = 1.0                                            # コンピュータの強さ（最強）
-   COMPUTER_NORMAL   = 0.9                                            # コンピュータの強さ（強い）
-   COMPUTER_EASY     = 0.7                                            # コンピュータの強さ（普通）
+   COURT_W,COURT_H,COURT_BLANK=700, 500, 10      # コートサイズ 幅,高さ,余白
+   RACKET_W,RACKET_H=10,50                       # ラケットサイズ 幅,高さ
+   COLOR_WHITE=(255,255,255)                     # 白のRGB値
+   COLOR_BLACK=(0,0,0)                           # 黒のRGB値
+   COLOR_RED=(255,0,0)                           # 赤のRGB値
+   COLOR_GREEN=(0,255,0)                         # 緑のRGB値
+   COLOR_BLUE=(0,0,255)                          # 青のRGB値
+   FONT_SIZE_GAMEOVER=128                        # GAMEOVERのフォントサイズ
+   FONT_SIZE_WINMESSAGE=80                       # 勝利メッセージのフォントサイズ
+   FONT_SIZE_SCORE=64                            # スコアのフォントサイズ
+   BALL_R=7                                      # ボールの半径
+   WIN_SCORE=10                                  # 勝ち点
+   BALL_SPEED_X_MIN,BALL_SPEED_X_MAX=8,15        # ボールの左右スピードの最小値、最大値(横)
+   BALL_SPEED_Y_MIN,BALL_SPEED_Y_MAX=0,5         # ボールの上下スピードの最小値、最大値(縦)
+   PLAYER_SPEED_Y_MAX,COMPUTER_SPEED_Y_MAX=4,5   # プレーヤとコンピュータの上下スピードの最大値
+   COMPUTER_STRONG   = 1.0                       # コンピュータの強さ（最強）
+   COMPUTER_NORMAL   = 0.9                       # コンピュータの強さ（強い）
+   COMPUTER_EASY     = 0.7                       # コンピュータの強さ（普通）
    #
    # 変数
    #
-   player_speed_y=0                                                       # プレーヤーの上下スピード
-   player_x,player_y=COURT_W-COURT_BLANK-RACKET_W,COURT_H//2-RACKET_H//2  # プレーヤーの位置
+   player_speed_y=0                                                       # プレーヤの上下スピード
+   player_x,player_y=COURT_W-COURT_BLANK-RACKET_W,COURT_H//2-RACKET_H//2  # プレーヤの位置
    computer_x,computer_y=COURT_BLANK,COURT_H//2-RACKET_H//2               # コンピュータの位置
-   computer_speed_y=0                                                     # コンピューターの上下スピード
+   computer_speed_y=0                                                     # コンピュータの上下スピード
    ball_x,ball_y=COURT_W//2,COURT_H//2-RACKET_H                           # ボール位置
    ball_speed_x,ball_speed_y=BALL_SPEED_X_MIN,BALL_SPEED_Y_MIN            # ボールの左右、上下スピード
-   player_score,computer_score=0,0                                        # プレーヤーとコンピューターのスコア
+   player_score,computer_score=0,0                                        # プレーヤとコンピュータのスコア
    #
    # pygameの設定
    #
-   pygame.init()                                                      # Pygameの初期化
-   screen=pygame.display.set_mode((COURT_W,COURT_H))                  # 画面の大きさ
-   pygame.display.set_caption("ピンポン")                              # 画面タイトル
-   pygame.mouse.set_visible(False)                                    # マウスポインタを表示しない
+   pygame.init()                                       # Pygameの初期化
+   screen=pygame.display.set_mode((COURT_W,COURT_H))   # 画面の大きさ
+   pygame.display.set_caption("ピンポン")               # 画面タイトル
+   pygame.mouse.set_visible(False)                     # マウスポインタを表示しない
 
-   computer_level=COMPUTER_STRONG
-   run=True                                                           # 実行中かどうかの変数を真（True)"実行中"にしておく
+   computer_level=COMPUTER_STRONG                      # コンピュータの強さ
+   run=True                                            # 実行中かどうかの変数を真（True)"実行中"にしておく
 
-   while run:                                                         # 実行中の間ずっと繰り返す 
+   while run:                                          # 実行中の間ずっと繰り返す 
 
       #
       # 各オブジェクトの描画
@@ -64,7 +64,7 @@ def main():
          pygame.draw.rect(screen,COLOR_WHITE,(COURT_W//2-5,i,10,COURT_H//20))
       # プレイヤー側のラケット描画
       pygame.draw.rect(screen,COLOR_WHITE,(player_x,player_y,RACKET_W,RACKET_H))
-      # コンピューター側のラケット描画
+      # コンピュータ側のラケット描画
       pygame.draw.rect(screen,COLOR_WHITE,(computer_x,computer_y,RACKET_W,RACKET_H))
       # ボールの描画
       pygame.draw.circle(screen,COLOR_WHITE,(ball_x,ball_y),BALL_R)
@@ -84,13 +84,13 @@ def main():
       
       # マウスの上下左右の位置を取得
       mouse_x,mouse_y = pygame.mouse.get_pos()
-      # プレーヤーの上下位置をマウスの位置にする
+      # プレーヤの上下位置をマウスの位置にする
       player_y = mouse_y
-      # プレーヤーの位置が上を出た場合
+      # プレーヤの位置が上を出た場合
       if player_y < 0:
-         # プレーヤーの位置を上端にする
+         # プレーヤの位置を上端にする
          player_y =0
-      # プレーヤーの位置が下を出た場合
+      # プレーヤの位置が下を出た場合
       if player_y > COURT_H - RACKET_H:
          player_y = COURT_H - RACKET_H
 
@@ -102,7 +102,7 @@ def main():
       between_computer_and_ball_x = ball_x - computer_x + RACKET_W
       # コンピュータとボールの縦の距離
       between_computer_and_ball_y = ball_y - (computer_y + RACKET_H//2)
-      # コンピュータとプレーヤーの横の距離
+      # コンピュータとプレーヤの横の距離
       between_computer_and_player_x = player_x - computer_x
       # コンピュータの移動スピードを決める
       computer_speed_y = 0
@@ -163,12 +163,12 @@ def main():
          ball_speed_x *= -1.1
          # ボールの縦の進行方向のスピードはボールの上方向の最速値から下方向の範囲ででたらめ（乱数）な値を設定する
          ball_speed_y = random.randrange(-BALL_SPEED_Y_MAX, BALL_SPEED_Y_MAX )
-      # プレーヤーのラケットにあたったかどうか判定
-      # ボールの右端がプレーヤーのラケットの左端を右に超えた場合　かつ
-      # ボールの縦の中心がプレーヤーのラケットの上端より下になっている場合　かつ
-      # ボールの縦の中心がプレーヤーのラケットの下端より上になっている場合
+      # プレーヤのラケットにあたったかどうか判定
+      # ボールの右端がプレーヤのラケットの左端を右に超えた場合　かつ
+      # ボールの縦の中心がプレーヤのラケットの上端より下になっている場合　かつ
+      # ボールの縦の中心がプレーヤのラケットの下端より上になっている場合
       elif ball_x + BALL_R > player_x and ball_y > player_y and ball_y < player_y + RACKET_H: 
-         # ボールの横の位置をプレーヤーのラケットの左に接触（ボールの中心が半径分左）した位置にする
+         # ボールの横の位置をプレーヤのラケットの左に接触（ボールの中心が半径分左）した位置にする
          ball_x = player_x - BALL_R
          # ボールの横の進行方向のスピードを反転（左）にしてスピード１０％増やす
          ball_speed_x *= -1.1
@@ -190,7 +190,7 @@ def main():
 
       # ボールが左側を超えた場合
       if ball_x < 0:
-         # プレーヤーのスコアを加算
+         # プレーヤのスコアを加算
          player_score += 1
          #　ボールの位置をプレーヤのラケット位置
          ball_x, ball_y= player_x - BALL_R, player_y + RACKET_H//2
@@ -207,7 +207,7 @@ def main():
          ball_speed_x, ball_speed_y = BALL_SPEED_X_MIN, BALL_SPEED_Y_MIN
 
       # GAME OVER判定
-      # コンピュータかプレーヤーが勝ち点をとった場合
+      # コンピュータかプレーヤが勝ち点をとった場合
 
       if computer_score == WIN_SCORE or player_score == WIN_SCORE:
          # GAME OVER用フォント準備
